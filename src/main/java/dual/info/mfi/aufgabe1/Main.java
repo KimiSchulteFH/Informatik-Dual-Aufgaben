@@ -1,6 +1,4 @@
-package de.kimischulte;
-
-import de.kimischulte.aufgabe1.Aufgabe1;
+package dual.info.mfi.aufgabe1;
 
 public class Main {
 

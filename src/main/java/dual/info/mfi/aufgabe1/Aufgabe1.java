@@ -1,4 +1,4 @@
-package de.kimischulte.aufgabe1;
+package dual.info.mfi.aufgabe1;
 
 public class Aufgabe1 {
 
