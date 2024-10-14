@@ -1,4 +1,4 @@
-package dual.info.eprog.uebungen;
+package dual.info.eprog.uebungen.Ü3;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class UEB03Z {
         int or = a | b;
         int xor = a ^ b;
         System.out.println("Ergebnisse der bitweisen Operationen:");
-        System.out.println("UND (&): " + toBinary(and) + " (" + and + ")");
+        System.out.println("UND (&): " + Long.toBinaryString(and) + " (" + and + ")");
         System.out.println("ODER (|): " + toBinary(or) + " (" + or + ")");
         System.out.println("XOR (^): " + toBinary(xor) + " (" + xor + ")");
         System.out.println();
