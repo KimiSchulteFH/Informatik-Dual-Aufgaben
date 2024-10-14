@@ -13,7 +13,7 @@ public class UEB03 {
         System.out.println("Dies ist ein \nText");
 // Zeichen
         System.out.println("\u0065");
-        System.out.println("");         //Hier ein Anführungszeichen auskommentiert
+        System.out.println("");         //Hier ein Anführungszeichen entfernt
         System.out.println("\"");
 // Ganze Zahlen
         System.out.println(2147483647);
