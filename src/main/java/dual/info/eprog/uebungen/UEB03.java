@@ -1,9 +1,21 @@
 package dual.info.eprog.uebungen;
 
+import java.util.Scanner;
+
+
 public class UEB03 {
     public static void main(String[] args) {
-// Zeichenketten
-        System.out.println("Hello World");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Geben Sie ein Jahr  ein: ");
+        final int jahr = scanner.nextInt();
+
+        //UEB03_5();
+        UEB03_6(jahr);
+    }
+
+    public static void UEB03_5() {
+        // Zeichenketten
+        System.out.println("Hello World"); // kein Umbruch möglich
         System.out.print("Hello");
         System.out.println(" World");
         System.out.println("4*5");
@@ -33,5 +45,17 @@ public class UEB03 {
         System.out.println("Differenz " + (0.123456789f - 0.123456788f));
         System.out.println("Summe " + ((12345678.0f + 0.1f) + 0.41f));
         System.out.println("Summe " + (12345678.0f + (0.1f + 0.41f)));
+    }
+
+    public static void UEB03_6(int jahr) {
+        if ((jahr) % 4 == 0 && (jahr) % 100 == 0 && (jahr) % 400 == 0) {
+            System.out.println("true || Schaltjahr: " + jahr);
+        } else if ((jahr) % 4 == 0 && (jahr) % 100 == 0 && (jahr) % 400 != 0) {
+            System.out.println("false || Kein Schaltjahr: " + jahr);
+        } else if ((jahr) % 4 == 0 && (jahr) % 100 != 0) {
+            System.out.println("true || Schaltjahr: " + jahr);
+        } else {
+            System.out.println("false || Kein Schaltjahr: " + jahr);
+        }
     }
 }
