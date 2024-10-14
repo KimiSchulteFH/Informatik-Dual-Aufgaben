@@ -20,6 +20,7 @@ public class Aufgabe3 {
         System.out.println("ADDMOD: " + aufgabe3.add(a, b));
         System.out.println("INV: " + aufgabe3.inv(a));
         System.out.println("ABEL: " + aufgabe3.abel(a, b));
+
     }
 
     public int add(int a, int b) {
