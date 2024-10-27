@@ -18,4 +18,9 @@ public class RationaleZahl {
     public int getNenner() {
         return nenner;
     }
+
+    @Override
+    public String toString() {
+        return zaehler + "/" + nenner;
+    }
 }
