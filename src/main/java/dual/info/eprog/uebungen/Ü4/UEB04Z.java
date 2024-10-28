@@ -19,13 +19,19 @@ public class UEB04Z {
 
     public static int getBonuspunkteGesamt(int vorrechnen, int bonustest1, int bonustest2) {
         if(vorrechnen < 0 || bonustest1 < 0 || bonustest2 < 0)
-            throw new IllegalArgumentException("Werte können nicht negativ sein");
+            throw new IllegalArgumentException("Werte können nicht negativ sein. :(");
         if(bonustest1 > 40 || bonustest2 > 40)
-            throw new IllegalArgumentException("Zu hohe Werte sind nicht zulässig");
+            throw new IllegalArgumentException("Punkte > 40 beim Bonustest sind nicht zulässig. :(");
         vorrechnen = (vorrechnen > 4) ? 4 : vorrechnen;
-        int zwischenErgebnisBonustest1 = bonustest1 / 40;
+        int bonustest1Ergebnis = kaufmaennischGerundet(bonustest1);
+        int bonustest2Eregebnis = kaufmaennischGerundet(bonustest2);
+        int ergebnis = vorrechnen + bonustest1Ergebnis + bonustest2Eregebnis;
+        return ergebnis > 10 ? 10 : ergebnis;
+    }
 
-        return -1;
+    public static int kaufmaennischGerundet(double value) {
+        double zwischenErgebnis = value / 10;
+        return zwischenErgebnis - ((int) zwischenErgebnis) > 0.5 ? (int) zwischenErgebnis + 1 : (int) zwischenErgebnis;
     }
 
 }
