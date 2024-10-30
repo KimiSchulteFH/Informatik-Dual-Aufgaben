@@ -1,4 +1,4 @@
-package dual.info.mfi.aufgabe1;
+package dual.info.mfi.aufgaben;
 
 import java.util.Scanner;
 

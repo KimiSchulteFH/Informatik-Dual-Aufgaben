@@ -1,4 +1,4 @@
-package dual.info.mfi.aufgabe1;
+package dual.info.mfi.aufgaben;
 
 import java.util.Scanner;
 
@@ -39,7 +39,7 @@ public class Aufgabe3 {
     }
 
     /** Def.:
-     *  https://www.math.uni-bielefeld.de/~sek/top/leit/alg2.htm
+     *  <a href="https://www.math.uni-bielefeld.de/~sek/top/leit/alg2.htm">...</a>
      */
     public boolean abel(int a, int b) {
         int e = 0; //Neutrales Element

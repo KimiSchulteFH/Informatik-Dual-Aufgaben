@@ -1,4 +1,4 @@
-package dual.info.mfi.aufgabe1;
+package dual.info.mfi.aufgaben;
 
 public class RationaleZahlenRechner {
 
@@ -39,5 +39,6 @@ public class RationaleZahlenRechner {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
+
 
 }

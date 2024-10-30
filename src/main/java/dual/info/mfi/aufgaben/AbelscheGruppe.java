@@ -1,4 +1,4 @@
-package dual.info.mfi.aufgabe1;
+package dual.info.mfi.aufgaben;
 
 public class AbelscheGruppe {
 
@@ -50,7 +50,7 @@ public class AbelscheGruppe {
 
     // Bei addition ist das "identitäts-element" 0
     public boolean checkIdentity(int start) {
-        for (int a = 0; a < N; a++) {
+        for (int a = start; a < N; a++) {
             if (add(a, 0) != a || add(0, a) != a) {
                 return false;
             }
