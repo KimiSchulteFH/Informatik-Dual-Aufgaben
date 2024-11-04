@@ -89,7 +89,7 @@ public class UEB05 {
         int bonus = 0;
         switch (auswahl) {
             case 1:
-                verzinsung = 0.15f;
+                verzinsung = 0.015f;
                 break;
             case 2:
                 verzinsung = 0.007f;
