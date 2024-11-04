@@ -55,12 +55,12 @@ public class UEB05 {
             for (int i = 0; i < zahlen.length; i++) {
                 int zahl = zahlen[i];
                 if (currentZahl == zahl) {
-                    zahlen[i] = 0;
+                    zahlen[i] = -1;
                 }
             }
         }
         for (int i : zahlen) {
-            if(i != 0)
+            if(i != -1)
                 return false;
         }
         return true;
