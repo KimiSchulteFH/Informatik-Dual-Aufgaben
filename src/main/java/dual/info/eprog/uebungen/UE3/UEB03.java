@@ -1,4 +1,4 @@
-package dual.info.eprog.uebungen.Ü3;
+package dual.info.eprog.uebungen.UE3;
 
 import java.util.Scanner;
 
