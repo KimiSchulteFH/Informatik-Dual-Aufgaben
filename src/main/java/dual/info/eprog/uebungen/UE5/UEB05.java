@@ -7,11 +7,11 @@ public class UEB05 {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Aufgabe 4:\n");
+        /*System.out.println("Aufgabe 4:\n");
         aufgabe4();
         System.out.println("\nAufgabe 5:\n");
         aufgabe5();
-        System.out.println("\nAufgabe 6:\n");
+        System.out.println("\nAufgabe 6:\n");*/
         aufgabe6();
     }
 
@@ -24,13 +24,13 @@ public class UEB05 {
 
     public static void pythTripel(int n) {
         int anzahlTripel = 0;
-        for (int a = 1; a < n; a++) {
-            for (int b = a; b < n; b++) {
-                for (int c = b; c < n; c++) {
-                    if(a*a + b*b == c*c) {
-                        anzahlTripel++;
-                        System.out.println(a + "*" + a + " + " + b + "*" + b + " = " + c + "*" + c);
-                    }
+        for (int a = 1; a <= n; a++) {
+            for (int b = a; b <= n; b++) {
+                double c_2 = a*a + b*b;
+                if(Math.sqrt(c_2) % 1 == 0) {
+                    anzahlTripel++;
+                    int c = (int) Math.sqrt(c_2);
+                    System.out.println(a + "*" + a + " + " + b + "*" + b + " = " + c + "*" + c);
                 }
             }
         }
