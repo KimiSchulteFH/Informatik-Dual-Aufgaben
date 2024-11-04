@@ -25,8 +25,8 @@ public class UEB05 {
     public static void pythTripel(int n) {
         int anzahlTripel = 0;
         for (int a = 1; a < n; a++) {
-            for (int b = 1; b < n; b++) {
-                for (int c = 0; c < n; c++) {
+            for (int b = a; b < n; b++) {
+                for (int c = b; c < n; c++) {
                     if(a*a + b*b == c*c) {
                         anzahlTripel++;
                         System.out.println(a + "*" + a + " + " + b + "*" + b + " = " + c + "*" + c);
@@ -89,18 +89,18 @@ public class UEB05 {
         int bonus = 0;
         switch (auswahl) {
             case 1:
-                verzinsung = 1.5f;
+                verzinsung = 0.15f;
                 break;
             case 2:
-                verzinsung = 0.7f;
+                verzinsung = 0.007f;
                 bonus = 15;
                 break;
             case 3:
-                verzinsung = 0.7f;
+                verzinsung = 0.007f;
                 bonus = 20;
                 break;
             case 4:
-                verzinsung = 0.7f;
+                verzinsung = 0.007f;
                 bonus = 50;
                 break;
         }
@@ -119,7 +119,7 @@ public class UEB05 {
         String auswahlListe = "1    1,5 % Verzinsung ohne Bonuszahlung\n";
         auswahlListe += "2    0,7 % Verzinsung mit 15 Euro Bonuszahlung\n";
         auswahlListe += "3    0,7 % Verzinsung mit 20 Euro Bonuszahlung\n";
-        auswahlListe += "4    0,7 % Verzinsung mit 50 Euro Bonuszahlung";
+        auswahlListe += "4    0,7 % Verzinsung mit 50 Euro Bonuszahlung\n";
         auswahlListe += "5    Fertig";
         System.out.println("\n" + auswahlListe);
     }
