@@ -17,27 +17,34 @@ public class RationaleZahlenRechner {
     public RationaleZahl add(RationaleZahl zahl1, RationaleZahl zahl2) {
         int zaehler = zahl1.getZaehler() * zahl2.getNenner() + zahl2.getZaehler() * zahl1.getNenner();
         int nenner = zahl1.getNenner() * zahl2.getNenner();
-        int gcd = gcd(zaehler, nenner);
-        // kürzen mit größtem gemeinsamen Teiler
-        int gekuerzterZaehler = zaehler / gcd;
-        int gekuerzterNenner = nenner / gcd;
-        return new RationaleZahl(gekuerzterZaehler, gekuerzterNenner);
+        return kuerzen(new RationaleZahl(zaehler, nenner));
     }
 
     public RationaleZahl multiply(RationaleZahl zahl1, RationaleZahl zahl2) {
         int zaehler = zahl1.getZaehler() * zahl2.getZaehler();
         int nenner = zahl1.getNenner() * zahl2.getNenner();
-        return new RationaleZahl(zaehler, nenner);
+        return kuerzen(new RationaleZahl(zaehler, nenner));
     }
 
     public boolean sindZahlenGleich(RationaleZahl zahl1, RationaleZahl zahl2) {
         return zahl1.getZaehler() * zahl2.getNenner() == zahl1.getNenner() * zahl2.getZaehler();
     }
 
+    public RationaleZahl kuerzen(RationaleZahl zahl) {
+        int gcd = gcd(zahl.getZaehler(), zahl.getNenner());
+        // kürzen mit größtem gemeinsamen Teiler
+        int gekuerzterZaehler = zahl.getZaehler() / gcd;
+        int gekuerzterNenner = zahl.getNenner() / gcd;
+        return new RationaleZahl(gekuerzterZaehler, gekuerzterNenner);
+    }
+
     // https://stackoverflow.com/a/4009247
     private int gcd(int a, int b) {
         if (b == 0) return a;
-        return gcd(b, a % b);
+        if(a > b) {
+            return gcd(b, a % b);
+        }
+        return gcd(a, b % a);
     }
 
 

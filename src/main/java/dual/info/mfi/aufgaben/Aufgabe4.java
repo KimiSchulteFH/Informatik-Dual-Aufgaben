@@ -10,7 +10,7 @@ public class Aufgabe4 {
 
     public static void aufgabe4_4() {
         System.out.println("\n\nAufgabe 4.4:");
-        int a = 1, b = 3, c = 1, d = 2;
+        int a = 6, b = 3, c = 4, d = 2;
         RationaleZahlenRechner rechner = new RationaleZahlenRechner();
 
         RationaleZahl zahl1 = new RationaleZahl(a, b);
