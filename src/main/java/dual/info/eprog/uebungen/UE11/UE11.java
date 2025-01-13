@@ -10,9 +10,8 @@ class Manager extends Mitarbeiter {
 
     private double festgehalt, provision, umsatz;
 
-    public Manager(String name, double fgehalt, double provision,
-                   Abteilung abt) {
-        super(name, abt);
+    public Manager(String name, double fgehalt, double provision) {
+        super(name);
         this.festgehalt = fgehalt;
         this.provision = provision;
     }
@@ -42,8 +41,8 @@ class Geschaeftsfuehrer extends Manager {
 
     private double zulage;
 
-    public Geschaeftsfuehrer(String name, double fgehalt, double provision, double zulage, Abteilung abt) {
-        super(name, fgehalt, provision, abt);
+    public Geschaeftsfuehrer(String name, double fgehalt, double provision, double zulage) {
+        super(name, fgehalt, provision);
         this.zulage = zulage;
     }
 
@@ -66,8 +65,8 @@ class Angestellter extends Mitarbeiter {
 
     private double grundgehalt, ortszuschlag, zulage;
 
-    public Angestellter(String name, Abteilung abt, double grundgehalt, double ortszuschlag, double zulage) {
-        super(name, abt);
+    public Angestellter(String name, double grundgehalt, double ortszuschlag, double zulage) {
+        super(name);
         this.grundgehalt = grundgehalt;
         this.ortszuschlag = ortszuschlag;
         this.zulage = zulage;
@@ -92,8 +91,8 @@ class Arbeiter extends Mitarbeiter {
 
     private double stundenlohn, anzahlStunden, ueberstundenZuschlag, anzahlUeberstunden;
 
-    public Arbeiter(String name, Abteilung abt, double stundenlohn, double anzahlStunden, double ueberstundenZuschlag, double anzahlUeberstunden) {
-        super(name, abt);
+    public Arbeiter(String name, double stundenlohn, double anzahlStunden, double ueberstundenZuschlag, double anzahlUeberstunden) {
+        super(name);
         this.stundenlohn = stundenlohn;
         this.anzahlStunden = anzahlStunden;
         this.ueberstundenZuschlag = ueberstundenZuschlag;
@@ -176,26 +175,27 @@ class Abteilung {
         }
     }
 
+    public double berechneGehaltskosten() {
+        double gehaltsKosten = 0;
+        for (Mitarbeiter mitarbeiter : dieMitarbeiter) {
+            gehaltsKosten += mitarbeiter.berechneGehalt();
+        }
+        return gehaltsKosten;
+    }
+
 }
 
 abstract class Mitarbeiter {
     // Attribute
     private static int anzahlMitarbeiter = 0;
 
-    private Abteilung dieAbteilung; // Referenz auf die zugehörige Abteilung
-
     private String name;
     private int personalnummer;
 
     // Konstruktor
-    public Mitarbeiter(String name, Abteilung abt) {
+    public Mitarbeiter(String name) {
         this.name = name;
         this.personalnummer = ++anzahlMitarbeiter;
-
-        // Assoziation vom Mitarbeiter zur Abteilung aufbauen
-        this.dieAbteilung = abt;
-        // Assoziation von der Abteilung zum Mitarbeiter aufbauen
-        abt.addMitarbeiter(this);
     }
 
     public void setName(String name) {
@@ -209,56 +209,9 @@ abstract class Mitarbeiter {
         return this.personalnummer;
     }
 
-    public Abteilung getAbteilung() {
-        return this.dieAbteilung;
-    }
-
-    public boolean isKollege(Mitarbeiter m) {
-        // Überprüfung, ob zwei Mitarbeiter Kollegen sind
-        Abteilung a1 = this.getAbteilung();
-        Abteilung a2 = m.getAbteilung();
-
-        return this != m && a1 == a2;
-
-  /* Kurzversion
-  return this != m && this.getAbteilung() == m.getAbteilung();
-  */
-    }
-
-    public Mitarbeiter[] bestimmeKollegen() {
-        // Bestimmung aller Kollegen eines Mitarbeiters
-        Mitarbeiter[] ergebnis = null;
-        Abteilung a;
-        int n;
-
-        // Abteilung des Mitarbeiters bestimmen
-        a = this.getAbteilung();
-
-        // Mitarbeiter der Abteilung ohne ursprünglichen Mitarbeiter in
-        // Feld ablegen
-        n = a.getAnzahlMitarbeiter();
-
-        if (n > 1) {
-            ergebnis = new Mitarbeiter[n-1];
-            int pos;
-
-            pos = 0;
-            for (int i = 0; i < n; i++) {
-                Mitarbeiter m = a.getMitarbeiter(i);
-                if (this != m) {
-                    ergebnis[pos] = m;
-                    pos++;
-                }
-            }
-        }
-
-        return ergebnis;
-    }
-
     @Override
     public String toString() {
         return "Mitarbeiter{" +
-                "dieAbteilung=" + dieAbteilung +
                 ", name='" + name + '\'' +
                 ", personalnummer=" + personalnummer +
                 '}';
@@ -271,12 +224,17 @@ class Mitarbeiterverwaltung {
 
     public static void main(String[] args) {
         Abteilung abteilung = new Abteilung("asd");
-        Mitarbeiter manager = new Manager("Manager", 1, 1, abteilung);
-        Mitarbeiter gf = new Geschaeftsfuehrer("GF", -1, -1, -1, abteilung);
+        Mitarbeiter manager = new Manager("Manager", 1, 1);
+        Mitarbeiter gf = new Geschaeftsfuehrer("GF", -1, -1, -1);
         System.out.println(manager);
         System.out.println(manager.getName() + " Gehalt: " + manager.berechneGehalt());
         System.out.println(gf);
         System.out.println(gf.getName() + " Gehalt: " + gf.berechneGehalt());
+
+
+        abteilung.addMitarbeiter(manager);
+        abteilung.addMitarbeiter(gf);
+        System.out.println(abteilung.getAnzahlMitarbeiter());
     }
 
 }
