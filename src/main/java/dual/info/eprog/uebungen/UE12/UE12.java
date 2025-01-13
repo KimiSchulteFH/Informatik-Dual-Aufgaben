@@ -1,4 +1,4 @@
-package dual.info.eprog.uebungen.UE11.UE12;
+package dual.info.eprog.uebungen.UE12;
 
 public class UE12 {
 
