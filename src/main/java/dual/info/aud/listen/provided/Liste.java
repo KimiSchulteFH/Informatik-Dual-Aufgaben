@@ -190,12 +190,18 @@ public class Liste<T>
 		Link<T> element = anfang;
 		int counter = 0;
 		while (element != null) {
+			boolean loeaschen = false;
 			if(element.daten.equals(opfer)) {
 				anzGeloeschte++;
 				//Man darf "entfernen" nicht benutzen, aber es ist sinnvoller als den code zu duplizieren
-				entfernen(counter);
+				loeaschen = true;
 			}
 			element = element.naechster;
+			if(loeaschen) {
+				entfernen(counter);
+				//Die Liste ist Scheiße, hab vergessen das die "on the fly" von uns aktualisiert wird
+				counter--;
+			}
 			counter++;
 		}
 
