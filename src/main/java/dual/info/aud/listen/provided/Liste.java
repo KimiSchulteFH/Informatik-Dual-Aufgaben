@@ -165,6 +165,7 @@ public class Liste<T>
 	{
 		// Diese Methode wird im Praktikum implementiert
 		// TODO
+		return this.anfang == null;
 	}
 
 	public void verketten(Liste<T> zweiteListe)
@@ -173,6 +174,11 @@ public class Liste<T>
 
 		// Diese Methode wird im Praktikum implementiert
 		// TODO
+		if(this.anfang == null) this.anfang = zweiteListe.anfang;
+		ende.naechster = zweiteListe.anfang;
+		if(zweiteListe.ende != null) ende = zweiteListe.ende;
+
+		zweiteListe.anfang = zweiteListe.ende = null;
 	}
 
 	public int entferneWerte(final T opfer)
@@ -181,6 +187,17 @@ public class Liste<T>
 
 		// Diese Methode wird im Praktikum implementiert
 		// TODO
+		Link<T> element = anfang;
+		int counter = 0;
+		while (element != null) {
+			if(element.daten.equals(opfer)) {
+				anzGeloeschte++;
+				//Man darf "entfernen" nicht benutzen, aber es ist sinnvoller als den code zu duplizieren
+				entfernen(counter);
+			}
+			element = element.naechster;
+			counter++;
+		}
 
 		return anzGeloeschte;
 	}
