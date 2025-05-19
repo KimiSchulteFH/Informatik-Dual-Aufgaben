@@ -48,14 +48,14 @@ public class UE04 {
                 a = (a+b)/2;
                 b = b;
             } else {
-                return f_1((a-b)/2);
+                return f_1((a+b)/2);
             }
         }
         return f_1((a+b)/2);
     }
 
     public static String unstetige_funktion_easy() {
-        return "f(x) = for (x <0,5) : 0; else: 1";
+        return "f(x) = (x <0,5) ? 0 : 1";
     }
 
 
