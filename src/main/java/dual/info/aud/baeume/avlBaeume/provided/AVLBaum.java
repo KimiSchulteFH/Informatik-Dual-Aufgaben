@@ -1,5 +1,9 @@
 package dual.info.aud.baeume.avlBaeume.provided;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Objects;
+
 public class AVLBaum<T extends Comparable<T>>
 {
 	private AVLKnoten<T> wurzel;
@@ -25,10 +29,26 @@ public class AVLBaum<T extends Comparable<T>>
 
 	public boolean suchen(final T daten)
 	{
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
+		if(istLeer())
+			return false;
 
-		return false;
+		AVLKnoten knoten = wurzel;
+		boolean found = false;
+		while (!found && knoten != null) {
+			if (knoten.getDaten() == daten)
+				found = true;
+
+			//wenn knotendaten kleiner als gesuchtes, dann nach rechts, sonst links und wieder in die schleife
+			//WENN KEINE KINDER, dann schleife beenden
+			final int cmp = daten.compareTo((T) knoten.getDaten());
+			if (cmp < 0) {
+				knoten = knoten.getKnotenLinks();
+			} else {
+				knoten = knoten.getKnotenRechts();
+			}
+		}
+
+		return found;
 	}
 
 
@@ -254,9 +274,30 @@ public class AVLBaum<T extends Comparable<T>>
 	// Pre-Order
 	public String traversierePreOrder()
 	{
-		// Diese Methode wird im Praktikum implementiert
-		// TODO
+		if(istLeer())
+			return "";
+		if (wurzel == null) {
+			return "Der Baum ist leer.";
+		}
 
-		return "NOCH NICHT IMPLEMENTIERT";
+		StringBuilder result = new StringBuilder();
+		Deque<AVLKnoten<T>> stack = new LinkedList<>();
+		stack.push(wurzel);
+
+		while (!stack.isEmpty()) {
+			AVLKnoten<T> aktuellerKnoten = stack.pop();
+			result.append(aktuellerKnoten.getDaten());
+
+			// Wichtig: Rechten Knoten zuerst auf den Stack legen, damit der linke Knoten
+			// als nächstes verarbeitet wird (Preorder: Wurzel -> Links -> Rechts)
+			if (aktuellerKnoten.getKnotenRechts() != null) {
+				stack.push(aktuellerKnoten.getKnotenRechts());
+			}
+			if (aktuellerKnoten.getKnotenLinks() != null) {
+				stack.push(aktuellerKnoten.getKnotenLinks());
+			}
+		}
+
+		return result.toString();
 	}
 }
